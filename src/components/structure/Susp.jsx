@@ -1,12 +1,17 @@
 import { GiSpring } from "react-icons/gi";
 
-const Susp = () => {
-  return (
-    <div className="container_items">
-      <p className="content_icon"><label className="chk_component" htmlFor="chk"><GiSpring /></label></p>
-      <details className="content_description_1">
-        <summary className="sum1">Suspenciones</summary>
+const Susp = ({idFix}) => {
+  const dropdownId = `dropdown-toggle-${idFix}`;
 
+  return (
+    <div className="item_menu">
+      <div>
+      <p className="content_icon"><label className="chk_component" htmlFor="chk"><GiSpring /></label></p>
+      </div>
+      <div className="dropdown content_description_1">
+        <input type="checkbox" id={dropdownId} />
+        <label htmlFor={dropdownId}>Suspención</label>
+        <div className="dropdown-content">
         <details className="content_description_2">
           <summary className="sum2" title="Suspenciones">Datos técnicos</summary>
           <div className="DataLinks">
@@ -76,8 +81,8 @@ const Susp = () => {
             <a className="Data" title="Remoción/instalación travesano trasero" href="/content/esicont/es/srvc/html/B3E021428400W01.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Remoción/instalación travesano trasero</a>
           </div>
         </details>
-        
-      </details>
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,12 +1,17 @@
 import { IoCarSport } from "react-icons/io5";
 
-const BodyWork = () => {
-  return (
-    <div className="container_items">
-      <p className="content_icon"><label className="chk_component" htmlFor="chk"><IoCarSport /></label></p>
-      <details className="content_description_1">
-        <summary className="sum1">Carroceria y accesorios</summary>
+const BodyWork = ({idFix}) => {
+  const dropdownId = `dropdown-toggle-${idFix}`;
 
+  return (
+    <div className="item_menu">
+      <div>
+      <p className="content_icon"><label className="chk_component" htmlFor="chk"><IoCarSport /></label></p>
+      </div>
+      <div className="dropdown content_description_1">
+        <input type="checkbox" id={dropdownId} />
+        <label htmlFor={dropdownId}>Carroceria y accesorios</label>
+        <div className="dropdown-content">
         <details className="content_description_2">
           <summary className="sum2" title="Datos ténicos">Datos ténicos</summary>
           <div className="DataLinks">
@@ -599,11 +604,8 @@ const BodyWork = () => {
             <a className="Data" title="Configuración caja de conexión pasajero (PJB)" href="/content/esicont/es/srvc/html/B3E094001072W03.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Configuración caja de conexión pasajero (PJB)</a>
           </div>
         </details>
-
-
-
-
-      </details>
+        </div>
+      </div>
     </div>
   )
 }

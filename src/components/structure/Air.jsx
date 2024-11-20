@@ -1,13 +1,18 @@
 import { MdAir } from "react-icons/md";
 
-const Air = () => {
-  return (
-    <div className="container_items">
-      <p className="content_icon"><label className="chk_component" htmlFor="chk"><MdAir /></label></p>
-      <details className="content_description_1">
-        <summary className="sum1">Calentador, ventilación y aire acondicionado</summary>
+const Air = ({idFix}) => {
+  const dropdownId = `dropdown-toggle-${idFix}`;
 
-        <details className="content_description_2">
+  return (
+    <div className="item_menu">
+    <div>
+    <p className="content_icon"><label className="chk_component" htmlFor="chk"><MdAir /></label></p>
+    </div>
+    <div className="dropdown content_description_1">
+      <input type="checkbox" id={dropdownId} />
+      <label htmlFor={dropdownId}>Calentador, ventilación y aire acondicionado</label>
+      <div className="dropdown-content">
+      <details className="content_description_2">
           <summary className="sum2" title="Datos técnicos">Datos técnicos</summary>
           <div className="DataLinks">
             <a className="Data" title="Datos tecnicos HVAC" href="/content/esicont/es/srvc/html/B3E075001038W01.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Datos tecnicos HVAC</a>
@@ -135,9 +140,9 @@ const Air = () => {
             <a className="Data" title="Control interruptor ventilador" href="/content/esicont/es/srvc/html/B3E074061060W03.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Control interruptor ventilador</a>
           </div>
         </details>
-
-      </details>
+      </div>
     </div>
+  </div>
   )
 }
 

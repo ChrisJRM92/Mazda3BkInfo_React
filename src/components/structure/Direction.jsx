@@ -1,12 +1,16 @@
 import { GiSteeringWheel } from "react-icons/gi";
 
-const Direction = () => {
+const Direction = ({idFix}) => {
+  const dropdownId = `dropdown-toggle-${idFix}`;
   return (
-    <div className="container_items">
+    <div className="item_menu">
+      <div>
       <p className="content_icon"><label className="chk_component" htmlFor="chk"><GiSteeringWheel /></label></p>
-      <details className="content_description_1">
-        <summary className="sum1">Dirección</summary>
-
+      </div>
+      <div className="dropdown content_description_1">
+        <input type="checkbox" id={dropdownId} />
+        <label htmlFor={dropdownId}>Dirección</label>
+        <div className="dropdown-content">
         <details className="content_description_2">
           <summary className="sum2" title="Datos técnicos">Datos técnicos</summary>
           <div className="DataLinks">
@@ -75,8 +79,8 @@ const Direction = () => {
             <a className="Data" title="Configuración modulo de control dirección asistida electrohidráulica (EHPAS)" href="/content/esicont/es/srvc/html/B3E061432650W05.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Configuración modulo de control dirección asistida electrohidráulica (EHPAS)</a>
           </div>
         </details>
-
-      </details>
+        </div>
+      </div>
     </div>
   )
 }

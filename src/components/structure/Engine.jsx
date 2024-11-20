@@ -1,13 +1,18 @@
 import { PiEngineFill } from "react-icons/pi";
 
-const Engine = () => {
-  return (
-    <div className="container_items">
-      <p className="content_icon"><label className="chk_component" htmlFor="chk"><PiEngineFill /></label></p>
-      <details className="content_description_1">
-        <summary className="sum1">Motor</summary>
+const Engine = ({idFix}) => {
+  const dropdownId = `dropdown-toggle-${idFix}`;
 
-        <details className="content_description_2">
+  return (
+    <div className="item_menu">
+    <div>
+    <p className="content_icon"><label className="chk_component" htmlFor="chk"><PiEngineFill /></label></p>
+    </div>
+    <div className="dropdown content_description_1">
+      <input type="checkbox" id={dropdownId} />
+      <label htmlFor={dropdownId}>Motor</label>
+      <div className="dropdown-content">
+      <details className="content_description_2">
           <summary className="sum2" title="Datos técnicos ">Datos técnicos </summary>
           <div className="DataLinks">
             <a className="Data" title="Datos técnicos del motor (ZJ, Z6, LF)" href="/content/esicont/es/srvc/html/B3E015001001W01.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Datos técnicos del motor (ZJ, Z6, LF)</a>
@@ -587,9 +592,9 @@ const Engine = () => {
             <a className="Data" title="Control sensor presión barométrica (BARO) (LF)" href="/content/esicont/es/srvc/html/B3E014018210W05.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Control sensor presión barométrica (BARO) (LF)</a>
           </div>
         </details>
-
-      </details>
+      </div>
     </div>
+  </div>
   )
 }
 

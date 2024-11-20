@@ -1,13 +1,17 @@
 import { GiGearStickPattern } from "react-icons/gi";
 
-const DiferChange = () => {
+const DiferChange = ({idFix}) => {
+  const dropdownId = `dropdown-toggle-${idFix}`;
   return (
-    <div className="container_items">
-      <p className="content_icon"><label className="chk_component" htmlFor="chk"><GiGearStickPattern /></label></p>
-      <details className="content_description_1">
-        <summary className="sum1">Cambio/cambio con diferencial </summary>
-
-        <details className="content_description_2">
+    <div className="item_menu">
+    <div>
+    <p className="content_icon"><label className="chk_component" htmlFor="chk"><GiGearStickPattern /></label></p>
+    </div>
+    <div className="dropdown content_description_1">
+      <input type="checkbox" id="dropdown-toggle" />
+      <label htmlFor="dropdown-toggle">Cambio/cambio con diferencial</label>
+      <div className="dropdown-content">
+      <details className="content_description_2">
           <summary className="sum2" title="Datos técnicos">Datos técnicos</summary>
           <div className="DataLinks">
             <a className="Data" title="Datos técnicos cambio/cambio con diferencial" href="/content/esicont/es/srvc/html/B3E055001024W01.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Datos técnicos cambio/cambio con diferencial</a>
@@ -201,12 +205,9 @@ const DiferChange = () => {
 
           </div>
         </details>
-
-
-
-
-      </details>
+      </div>
     </div>
+  </div>
   )
 }
 

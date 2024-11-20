@@ -1,12 +1,17 @@
 import { GiCarWheel } from "react-icons/gi";
 
-const Brakes = () => {
-  return (
-    <div className="container_items">
-      <p className="content_icon"><label className="chk_component" htmlFor="chk"><GiCarWheel /></label></p>
-      <details className="content_description_1">
-        <summary className="sum1">Frenos</summary>
+const Brakes = ({idFix}) => {
+  const dropdownId = `dropdown-toggle-${idFix}`;
 
+  return (
+    <div className="item_menu">
+      <div>
+      <p className="content_icon"><label className="chk_component" htmlFor="chk"><GiCarWheel /></label></p>
+      </div>
+      <div className="dropdown content_description_1">
+        <input type="checkbox" id={dropdownId} />
+        <label htmlFor={dropdownId}>Frenos</label>
+        <div className="dropdown-content">
         <details className="content_description_2">
           <summary className="sum2" title="Datos técnicos">Datos técnicos</summary>
           <div className="DataLinks">
@@ -162,7 +167,8 @@ const Brakes = () => {
             <a className="Data" title="Control interruptor DSC OFF" href="/content/esicont/es/srvc/html/B3E041566410W02.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Control interruptor DSC OFF</a>
           </div>
         </details>
-      </details>
+        </div>
+      </div>
     </div>
   )
 }

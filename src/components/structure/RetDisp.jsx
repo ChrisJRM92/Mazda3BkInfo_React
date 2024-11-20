@@ -1,12 +1,17 @@
 import { MdOutlineSecurity } from "react-icons/md";
 
-const RetDisp = () => {
-  return (
-    <div className="container_items">
-      <p className="content_icon"><label className="chk_component" htmlFor="chk"><MdOutlineSecurity /></label></p>
-      <details className="content_description_1">
-        <summary className="sum1">Dispositivos de retención </summary>
+const RetDisp = ({idFix}) => {
+  const dropdownId = `dropdown-toggle-${idFix}`;
 
+  return (
+    <div className="item_menu">
+      <div>
+      <p className="content_icon"><label className="chk_component" htmlFor="chk"><MdOutlineSecurity /></label></p>
+      </div>
+      <div className="dropdown content_description_1">
+        <input type="checkbox" id={dropdownId} />
+        <label htmlFor={dropdownId}>Dispositivos de seguridad</label>
+        <div className="dropdown-content">
         <details className="content_description_2">
           <summary className="sum2" title="Herramienta para el mantenimiento">Herramienta para el mantenimiento</summary>
           <div className="DataLinks">
@@ -95,9 +100,8 @@ const RetDisp = () => {
             <a className="Data" title="Remoción/instalación anclaje asiento para niños" href="/content/esicont/es/srvc/html/B3E081100117W01.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Remoción/instalación anclaje asiento para niños</a>
           </div>
         </details>
-
-
-      </details>
+        </div>
+      </div>
     </div>
   )
 }
