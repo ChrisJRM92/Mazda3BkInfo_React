@@ -1,5 +1,5 @@
 /* ---------Main Container-------- */
-.container{
+.container_home{
   display: grid;
   height: 100vh;
   grid-template-columns: var(--width, 250px) 1fr;
@@ -61,7 +61,7 @@
     }
 
     .container_content{
-      margin-top: 15px;
+      margin-top: 5px;
       /* margin: 0px 20px; */
       width: 100%;
       height: 100%;
@@ -94,6 +94,9 @@
       .arrowLabel{
         /* background-color: #0956d2; */
         height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding-top: 1px;
         cursor: pointer;
         rotate: var(--rotate, 0deg);
@@ -190,14 +193,15 @@
 .content_description_1{
   color: aliceblue;
   font-size: 12px;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   margin: 0;
+  display: var(--show, block);
 }
 
 
 .content_description_2{
-  padding-left: 10px;
+  padding-left: 1px;
 }
 
 summary{
@@ -299,7 +303,7 @@ details{
 }
 
 
-.container:has(:checked){
+.container_home:has(input.inputCheck:checked){
   --width: 55px;
   --widthMobile: 250px;
   --displace: 38px;
@@ -314,11 +318,11 @@ details{
 }
 
 @media (max-width: 400px){
-  .container:has(:checked){
+  .container_home:has(:checked){
     --rotateMobile: 0deg;
   }
   
-  .container{
+  .container_home{
     grid-template-columns: var(--widthMobile, 55px) 1fr;
     .container_lateral_menu{
       a{
@@ -353,3 +357,61 @@ details{
     display: var(--hideMobile, none);
   }
 }
+
+.rule{
+  width: 100%;
+  height: 1px;
+  color: aliceblue;
+}
+
+.item_menu{
+  display: flex;
+}
+
+.dropdown {
+      position: relative;
+      width: 300px;
+    }
+
+    .dropdown input {
+      display: none;
+    }
+
+    .dropdown label {
+      display: block;
+      font-size: 13px;
+      background-color: #1e1f25;
+      color: white;
+      padding: 5px;
+      /* text-align: center; */
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    /* .dropdown label:hover {
+      background-color: #0056b3;
+    } */
+
+    .dropdown-content {
+      max-height: 0;
+      overflow: hidden;
+      background-color: #1e1f25;
+      /* padding: 0 5px; */
+      color: aliceblue;
+      font-size: 13px;
+      /* border: 1px solid #ddd; */
+      border-radius: 5px;
+      /* margin-top: 5px; */
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    .dropdown-content p {
+      margin: 0;
+      /* padding: 5px 0; */
+    }
+
+    .dropdown input:checked + label + .dropdown-content {
+      max-height: 1000px; /* Un valor alto para garantizar espacio */
+      /* padding: 10px; */
+    }

@@ -1,11 +1,17 @@
 import { IoInformationCircleSharp } from "react-icons/io5";
 
-const GenInf = () => {
+const GenInf = ({idFix}) => {
+  const dropdownId = `dropdown-toggle-${idFix}`;
+
   return (
-    <div className="container_items">
+    <div className="item_menu">
+      <div>
       <p className="content_icon"><label className="chk_component" htmlFor="chk"><IoInformationCircleSharp /></label></p>
-      <details className="content_description_1">
-        <summary className="sum1">Informaciones generales</summary>
+      </div>
+      <div className="dropdown content_description_1">
+        <input type="checkbox" id={dropdownId} />
+        <label htmlFor={dropdownId}>Informaciones generales</label>
+        <div className="dropdown-content">
         <details className="content_description_2">
           <summary className="sum2">Informaciones generales</summary>
           <div className="DataLinks">
@@ -23,7 +29,8 @@ const GenInf = () => {
             <a className="Data" href="/content/esicont/es/srvc/html/B3E000000013W01.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Mantenimiento programado</a>
           </div>
         </details>
-      </details>
+        </div>
+      </div>
     </div>
   )
 }

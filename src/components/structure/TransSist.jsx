@@ -1,12 +1,16 @@
 import { FaGears } from "react-icons/fa6";
 
-const TransSist = () => {
+const TransSist = ({idFix}) => {
+  const dropdownId = `dropdown-toggle-${idFix}`;
   return (
-    <div className="container_items">
+    <div className="item_menu">
+      <div>
       <p className="content_icon"><label className="chk_component" htmlFor="chk"><FaGears /></label></p>
-      <details className="content_description_1">
-        <summary className="sum1">Sistema de transmisión/eje</summary>
-
+      </div>
+      <div className="dropdown content_description_1">
+        <input type="checkbox" id={dropdownId} />
+        <label htmlFor={dropdownId}>Sistema de transmisión/eje</label>
+        <div className="dropdown-content">
         <details className="content_description_2">
           <summary className="sum2" title="Datos técnicos">Datos técnicos</summary>
           <div className="DataLinks">
@@ -59,7 +63,8 @@ const TransSist = () => {
             <a className="Data" title="Desmontaje/montaje (junta doble desalineada) semieje" href="/content/esicont/es/srvc/html/B3E031325501W01.html" target="contentIframe"><i className="fa-solid fa-file-lines"></i>Desmontaje/montaje (junta doble desalineada) semieje</a>
           </div>
         </details>
-      </details>
+        </div>
+      </div>
     </div>
   )
 }
