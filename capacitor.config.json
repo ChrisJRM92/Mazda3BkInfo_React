@@ -1,5 +1,15 @@
 {
   "appId": "com.mazda3bkinfo.app",
-  "appName": "Mazda 3 BK",
-  "webDir": "dist"
+  "appName": "Mazda 3 BK Workshop Manual",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "launchAutoHide": true,
+      "backgroundColor": "#111111",
+      "androidSplashResourceName": "splash",
+      "androidSplashScaleType": "fit"
+    }
+  }
 }
