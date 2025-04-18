@@ -100,7 +100,7 @@ const HomePage = () => {
             <Buttom label={labelsButtoms[0]} url={url[0]} />
             <Buttom icon={RiPrinterFill} printData={true} />
             <Buttom label={labelsButtoms[2]} url={url[1]} />
-            <Profile />
+            {/*<Profile /> */}
           </div>
         </div>
         <div className="container_body">
@@ -113,7 +113,7 @@ const HomePage = () => {
           ></iframe>
         </div>
         <div className="container_footer">
-          <p className="label_footer">Versión V1.8.7</p>
+          <p className="label_footer">Versión V1.8.8</p>
           {/* <p className='label_footer'>2003 - 2008</p> */}
         </div>
       </div>
