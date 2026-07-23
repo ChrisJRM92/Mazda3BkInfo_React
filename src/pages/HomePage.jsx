@@ -1,124 +1,104 @@
-import { IoIosArrowBack } from "react-icons/io";
-import { RiPrinterFill } from "react-icons/ri";
+import { useState } from 'react'
+import { Box, Drawer, AppBar, Toolbar, IconButton, Typography, useMediaQuery } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import { MdMenu } from 'react-icons/md'
+import { RiPrinterFill } from 'react-icons/ri'
+import { BiSolidError } from 'react-icons/bi'
 
-// Componentes
-import Buttom from "../components/Buttom";
-import Profile from "../components/Profile";
-import SearchEngine from "../components/SearchEngine";
-import "./styles/HomePage.css";
-import GenInf from "../components/structure/GenInf";
-import Engine from "../components/structure/Engine";
-import Susp from "../components/structure/Susp";
-import TransSist from "../components/structure/TransSist";
-import Brakes from "../components/structure/Brakes";
-import DiferChange from "../components/structure/DiferChange";
-import Direction from "../components/structure/Direction";
-import Air from "../components/structure/Air";
-import RetDisp from "../components/structure/RetDisp";
-import BodyWork from "../components/structure/BodyWork";
-import VideoInfo from "../components/structure/VideoInfo";
-import { CNavItem } from "@coreui/react";
-import { CNavTitle } from "@coreui/react";
-import { CSidebarNav } from "@coreui/react";
-import { CNavGroup} from "@coreui/react";
+import Sidebar from '../components/Sidebar'
+import ButtonMenu from '../components/ButtonMenu'
+import ThemeToggle from '../components/ThemeToggle'
 
-import GenInfTest from "../components/structure/GenInfTest";
-import Test1 from "../components/structure/test";
-import UserManual from "../components/structure/UserManual";
-import Mant from "../components/structure/Mant";
+const DRAWER_WIDTH = 260
+const DRAWER_WIDTH_COLLAPSED = 64
 
-const HomePage = () => {
-  const labelsButtoms = ["Advertencia", "imprimir", "VIN", "Códigos DTC"];
-  const url = [
-    "/content/esicont/es/engine/A01/html/B3E000000001201.html",
-    "/content/esicont/html/vin.html",
-  ];
-  const iconsComponents = ["<IoInformationCircleSharp />"];
+const HomePage = ({ mode, setMode }) => {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const sections = [
-    "section1", 
-    "section2", 
-    "section3", 
-    "section4", 
-    "section5", 
-    "section6", 
-    "section7", 
-    "section8", 
-    "section9",
-    
+  const [collapsed, setCollapsed] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  const urls = [
+    '/content/esicont/es/engine/A01/html/B3E000000001201.html',
+    '/content/esicont/html/vin.html',
   ]
 
+  const handleMenuClick = () => (isMobile ? setMobileOpen((p) => !p) : setCollapsed((p) => !p))
+  const handleExpandRequest = () => setCollapsed(false)
+
+  const currentDrawerWidth = isMobile ? DRAWER_WIDTH : (collapsed ? DRAWER_WIDTH_COLLAPSED : DRAWER_WIDTH)
+
   return (
-    <>
-      <div className="container_home">
-        <div className="container_lateral_menu">
-          {/* Header icons */}
-          <a href="/content/DefaultPage.html" target="contentIframe">
-            <div className="container_icon_header">
-              <div className="icon_header_grid">
-                <div className="iconsBack"></div>
-                <div className="iconFront"></div>
-                <div className="iconLateral"></div>
-              </div>
-            </div>
-          </a>
-          <hr className="rule" />
-          {/* Arrow buttom */}
-          <div className="arrowButtom" htmlFor="chk">
-            <input className="inputCheck" type="checkbox" id="chk" />
-            <label className="arrowLabel" htmlFor="chk">
-              <IoIosArrowBack />
-            </label>
-          </div>
+    <Box sx={{ display: 'flex', height: '100vh' }}>
+      <Drawer
+        variant={isMobile ? 'temporary' : 'permanent'}
+        open={isMobile ? mobileOpen : true}
+        onClose={() => setMobileOpen(false)}
+        ModalProps={{ keepMounted: true }}
+        sx={{
+          width: currentDrawerWidth,
+          flexShrink: 0,
+          whiteSpace: 'nowrap',
+          transition: theme.transitions.create('width'),
+          '& .MuiDrawer-paper': {
+            width: currentDrawerWidth,
+            boxSizing: 'border-box',
+            overflowX: 'hidden',
+            transition: theme.transitions.create('width'),
+          },
+        }}
+      >
+        {/* 🟢 SE PASA EL PROP 'mode' AL SIDEBAR PARA RECONOCER MODO CLARO/OSCURO */}
+        <Sidebar
+          collapsed={!isMobile && collapsed}
+          onExpandRequest={handleExpandRequest}
+          mode={mode}
+        />
+      </Drawer>
 
-          {/* Icons content */}
-          <div className="container_content">
-            {/* <Test1 idFix={sections[0]}/> */}
-            <GenInf idFix={sections[0]}/>
-            <Engine idFix={sections[1]}/>
-            <Susp idFix={sections[2]}/>
-            <TransSist idFix={sections[3]}/>
-            <Brakes idFix={sections[4]}/>
-            <DiferChange idFix={sections[5]}/>
-            <Direction idFix={sections[6]}/>
-            <Air idFix={sections[7]}/>
-            <RetDisp idFix={sections[8]}/>
-            <BodyWork idFix={sections[9]}/>
-            <hr className="rule"  />
-            <UserManual />
-            <VideoInfo />
-            <Mant/>
-          </div>
-        </div>
+      <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+        <AppBar position="static" color="inherit" elevation={1}>
+          <Toolbar sx={{ justifyContent: 'space-between', gap: 1, flexWrap: 'wrap' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <IconButton onClick={handleMenuClick}><MdMenu size={22} /></IconButton>
+              <ButtonMenu label="DTCs" icon={BiSolidError} url="/content/dtc.html" color="warning" />            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <ButtonMenu label="Advertencia" url={urls[0]} />
+              <ButtonMenu icon={RiPrinterFill} printData />
+              <ButtonMenu label="VIN" url={urls[1]} />
+              <ThemeToggle mode={mode} setMode={setMode} />
+              <ButtonMenu profile url="https://c-rom.site/" avatarSrc="/images/profiledev.png" avatarAlt="Christian Romero" />
+            </Box>
+          </Toolbar>
+        </AppBar>
 
-        <div className="container_header">
-          <div className="searchBox">
-            <SearchEngine />
-            {/* <Buttom label = {labelsButtoms[3]}/> */}
-          </div>
-          <div className="contentOptions">
-            <Buttom label={labelsButtoms[0]} url={url[0]} />
-            <Buttom icon={RiPrinterFill} printData={true} />
-            <Buttom label={labelsButtoms[2]} url={url[1]} />
-            <Profile />
-          </div>
-        </div>
-        <div className="container_body">
-          <iframe
-            className="iframeContent"
+        <Box sx={{ flexGrow: 1, position: 'relative' }}>
+          <Box
+            component="iframe"
             id="print"
             name="contentIframe"
             src="/content/DefaultPage.html"
-            frameBorder={0}
-          ></iframe>
-        </div>
-        <div className="container_footer">
-          <p className="label_footer">Versión V1.8.7</p>
-          {/* <p className='label_footer'>2003 - 2008</p> */}
-        </div>
-      </div>
-    </>
-  );
-};
+            title="Manual de Taller Mazda 3"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              border: 0,
+              colorScheme: 'normal' // 🟢 PROTEGE EL CONTENIDO DEL IFRAME DE FILTROS AUTOMÁTICOS
+            }}
+          />
+        </Box>
 
-export default HomePage;
+        <Box sx={{ height: 30, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', px: 2 }}>
+          <Typography variant="caption" color="text.secondary">Versión V2.0.1</Typography>
+        </Box>
+      </Box>
+    </Box>
+  )
+}
+
+export default HomePage

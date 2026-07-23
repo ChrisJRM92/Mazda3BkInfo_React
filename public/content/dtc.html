@@ -1,142 +1,568 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles/dtc.css">
+  <title>Códigos de Error DTC</title>
+
+  <!-- Tipografías: Poppins para texto, JetBrains Mono para el "readout" técnico -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* ── Tokens de color (paleta de la app) ── */
+      --color-primary: #0956d2;
+      --color-primary-dark: #073e9c;
+      --color-primary-soft: #e8f0fe;
+      --color-bg: #f4f5f7;
+      --color-surface: #ffffff;
+      --color-border: #e5e7eb;
+      --color-text: #1a1a1a;
+      --color-text-secondary: #5f6368;
+      --color-accent-warning: #d97706;
+
+      /* readout tipo scanner OBD2 */
+      --readout-bg: #0c1e3d;
+      --readout-text: #7fb8ff;
+
+      --radius-card: 14px;
+      --shadow-card: 0 2px 8px rgba(9, 32, 77, 0.08);
+      --shadow-card-hover: 0 10px 24px rgba(9, 86, 210, 0.18);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 15% 0%, var(--color-primary-soft) 0%, transparent 45%),
+        var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem;
+    }
+
+    /* ── Encabezado ── */
+    .containerHeader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 1.75rem;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+      background: var(--color-primary-soft);
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .containerHeader h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--color-text);
+      max-width: 480px;
+    }
+
+    /* ── Buscador ── */
+    .search-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--color-surface);
+      border: 1.5px solid var(--color-border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search-box:focus-within {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .search-box svg {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: var(--color-text-secondary);
+      stroke-width: 2;
+    }
+
+    .search-box:focus-within svg {
+      stroke: var(--color-primary);
+    }
+
+    #dtcSearch {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13.5px;
+      letter-spacing: 0.02em;
+      color: var(--color-text);
+    }
+
+    #dtcSearch::placeholder {
+      font-family: "Poppins", sans-serif;
+      color: var(--color-text-secondary);
+      font-weight: 400;
+    }
+
+    .search-hint {
+      font-size: 10.5px;
+      color: var(--color-text-secondary);
+      margin-top: 6px;
+      padding-left: 2px;
+    }
+
+    /* Panel de resultados flotante */
+    #dtcResults {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      box-shadow: var(--shadow-card-hover);
+      overflow: hidden;
+      z-index: 20;
+      display: none;
+    }
+
+    #dtcResults.open {
+      display: block;
+    }
+
+    .dtc-result {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--color-border);
+      transition: background 0.15s ease;
+    }
+
+    .dtc-result:last-child {
+      border-bottom: none;
+    }
+
+    .dtc-result:hover {
+      background: var(--color-primary-soft);
+    }
+
+    .dtc-result-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .dtc-result-code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .dtc-result-desc {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dtc-result-section {
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--color-primary);
+      background: var(--color-primary-soft);
+      padding: 3px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* Estado: sin resultados → fallback a Google */
+    .dtc-empty {
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .dtc-empty p {
+      font-size: 12.5px;
+      color: var(--color-text-secondary);
+    }
+
+    .dtc-google-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--color-primary);
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid var(--color-primary);
+      border-radius: 8px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .dtc-google-link:hover {
+      background: var(--color-primary);
+      color: #ffffff;
+    }
+
+    /* ── Grilla ── */
+    .containerGen {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    .link, .link1 {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      display: block;
+    }
+
+    /* ── Tarjeta ── */
+    .containerCard {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-card);
+      padding: 18px 12px 14px;
+      min-height: 170px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* franja superior estilo "conector" — el elemento distintivo de la tarjeta */
+    .containerCard::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 16px;
+      right: 16px;
+      height: 3px;
+      border-radius: 0 0 3px 3px;
+      background: linear-gradient(90deg, var(--color-primary), #4c8dff);
+      opacity: 0;
+      transform: translateY(-2px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .link:hover .containerCard,
+    .link1:hover .containerCard {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card-hover);
+      border-color: var(--color-primary);
+    }
+
+    .link:hover .containerCard::before,
+    .link1:hover .containerCard::before {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .link:focus-visible .containerCard,
+    .link1:focus-visible .containerCard {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    .iconWrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--color-primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      transition: background 0.2s ease;
+    }
+
+    .link:hover .iconWrap,
+    .link1:hover .iconWrap {
+      background: var(--color-primary);
+    }
+
+    .imgIcon {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      filter: brightness(0) saturate(100%) invert(21%) sepia(84%) saturate(2400%) hue-rotate(213deg);
+      transition: filter 0.2s ease;
+    }
+
+    .link:hover .imgIcon,
+    .link1:hover .imgIcon {
+      filter: brightness(0) saturate(100%) invert(100%);
+    }
+
+    .description {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+
+    .TitleCode {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--color-text);
+      margin-top: 3px;
+      text-align: center;
+    }
+
+    .detailData {
+      font-size: 9px;
+      font-weight: 500;
+      color: var(--color-accent-warning);
+      margin-top: 2px;
+    }
+
+    /* ── Readout tipo scanner OBD2 (código técnico) ── */
+    .TypeCode {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--readout-text);
+      background: var(--readout-bg);
+      padding: 3px 8px;
+      border-radius: 5px;
+      margin-top: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    /* Tarjeta sin enlace directo (Carrocería) */
+    .link1 .containerCard {
+      border-style: dashed;
+    }
+
+    @media (max-width: 480px) {
+      .containerGen {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      }
+    }
+  </style>
 </head>
 <body>
-  
+
   <div class="containerHeader">
-      <h2>Códigos de error DTC (Diagnostic Trouble Code) OBD2</h2>
+    <span class="eyebrow">OBD2 · Diagnóstico</span>
+    <h2>Códigos de error DTC (Diagnostic Trouble Code)</h2>
   </div>
-  
+
+  <!-- ── Buscador ── -->
+  <div class="search-wrap">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="dtcSearch" placeholder="Buscar código, ej: P0300..." autocomplete="off">
+    </div>
+    <p class="search-hint">Escribe al menos 2 caracteres del código o la descripción</p>
+    <div id="dtcResults"></div>
+  </div>
+
   <div class="containerGen">
 
     <a class="link" href="esicont/es/srvc/html/B3E010200102W22.html">
       <div class="containerCard">
-        <div class="cardBackBack"></div>
-        <div class="cardBack"></div>
-        <div class="CardFront">
-          <img class="imgIcon" src="icons/engineil.svg" alt="">
-          <p class="description">Códigos DTC</p>
-          <p class="TitleCode">Motor</p>
-          <p class="TypeCode">[ZJ,Z6] [P]</p>
-        </div>
+        <div class="iconWrap"><img class="imgIcon" src="icons/engineil.svg" alt="Motor ZJ,Z6"></div>
+        <p class="description">Códigos DTC</p>
+        <p class="TitleCode">Motor</p>
+        <p class="TypeCode">[ZJ,Z6] [P]</p>
       </div>
     </a>
 
     <a class="link" href="esicont/es/srvc/html/B3E010200102W11.html">
       <div class="containerCard">
-        <div class="cardBackBack"></div>
-        <div class="cardBack"></div>
-        <div class="CardFront">
-          <img class="imgIcon" src="icons/engineil.svg" alt="">
-          <p class="description">Códigos DTC</p>
-          <p class="TitleCode">Motor</p>
-          <p class="TypeCode">[LF] [P]</p>
-        </div>
+        <div class="iconWrap"><img class="imgIcon" src="icons/engineil.svg" alt="Motor LF"></div>
+        <p class="description">Códigos DTC</p>
+        <p class="TitleCode">Motor</p>
+        <p class="TypeCode">[LF] [P]</p>
       </div>
     </a>
 
     <a class="link" href="esicont/es/srvc/html/B3E040243000W02.html">
       <div class="containerCard">
-        <div class="cardBackBack"></div>
-        <div class="cardBack"></div>
-        <div class="CardFront">
-          <img class="imgIcon" src="icons/breaks.svg" alt="">
-          <p class="description">Códigos DTC</p>
-          <p class="TitleCode">Frenos [ABS]</p>
-          <p class="TypeCode">[B,C,U]</p>
-        </div>
+        <div class="iconWrap"><img class="imgIcon" src="icons/breaks.svg" alt="Frenos ABS"></div>
+        <p class="description">Códigos DTC</p>
+        <p class="TitleCode">Frenos [ABS]</p>
+        <p class="TypeCode">[B,C,U]</p>
       </div>
     </a>
 
     <a class="link" href="esicont/es/srvc/html/B3E040243000W12.html">
       <div class="containerCard">
-        <div class="cardBackBack"></div>
-        <div class="cardBack"></div>
-        <div class="CardFront">
-          <img class="imgIcon" src="icons/breaks.svg" alt="">
-          <p class="description">Códigos DTC</p>
-          <p class="TitleCode">Frenos [DSC]</p>
-          <p class="TypeCode">[B,C,U]</p>
-        </div>
+        <div class="iconWrap"><img class="imgIcon" src="icons/breaks.svg" alt="Frenos DSC"></div>
+        <p class="description">Códigos DTC</p>
+        <p class="TitleCode">Frenos [DSC]</p>
+        <p class="TypeCode">[B,C,U]</p>
       </div>
     </a>
 
     <a class="link" href="esicont/es/srvc/html/B3E050219090W05.html">
       <div class="containerCard">
-        <div class="cardBackBack"></div>
-        <div class="cardBack"></div>
-        <div class="CardFront">
-          <img class="imgIcon" src="icons/dife.svg" alt="">
-          <p class="description">Códigos DTC</p>
-          <p class="TitleCode">Cambio/Dif.</p>
-          <p class="TypeCode">[P]</p>
-        </div>
+        <div class="iconWrap"><img class="imgIcon" src="icons/dife.svg" alt="Cambio/Dif"></div>
+        <p class="description">Códigos DTC</p>
+        <p class="TitleCode">Cambio/Dif.</p>
+        <p class="TypeCode">[P]</p>
       </div>
     </a>
 
     <a class="link" href="esicont/es/srvc/html/B3E060201038W02.html">
       <div class="containerCard">
-        <div class="cardBackBack"></div>
-        <div class="cardBack"></div>
-        <div class="CardFront">
-          <img class="imgIcon" src="icons/direc.svg" alt="">
-          <p class="description">Códigos DTC</p>
-          <p class="TitleCode">Dirección</p>
-          <p class="TypeCode">[B,C]</p>
-        </div>
+        <div class="iconWrap"><img class="imgIcon" src="icons/direc.svg" alt="Dirección"></div>
+        <p class="description">Códigos DTC</p>
+        <p class="TitleCode">Dirección</p>
+        <p class="TypeCode">[B,C]</p>
       </div>
     </a>
 
     <a class="link" href="esicont/es/srvc/html/B3E070201038W01.html">
       <div class="containerCard">
-        <div class="cardBackBack"></div>
-        <div class="cardBack"></div>
-        <div class="CardFront">
-          <img class="imgIcon" src="icons/venti.svg" alt="">
-          <p class="description">Códigos DTC</p>
-          <p class="TitleCode">Ventilación</p>
-          <p class="TypeCode">[B]</p>
-        </div>
+        <div class="iconWrap"><img class="imgIcon" src="icons/venti.svg" alt="Ventilacion"></div>
+        <p class="description">Códigos DTC</p>
+        <p class="TitleCode">Ventilación</p>
+        <p class="TypeCode">[B]</p>
       </div>
     </a>
 
     <a class="link" href="esicont/es/srvc/html/B3E080201046W05.html">
       <div class="containerCard">
-        <div class="cardBackBack"></div>
-        <div class="cardBack"></div>
-        <div class="CardFront">
-          <img class="imgIcon" src="icons/ret.svg" alt="">
-          <p class="description">Códigos DTC</p>
-          <p class="TitleCode">Dis. Ret.</p>
-          <p class="TypeCode">[B]</p>
-        </div>
+        <div class="iconWrap"><img class="imgIcon" src="icons/ret.svg" alt="Dis Retencion"></div>
+        <p class="description">Códigos DTC</p>
+        <p class="TitleCode">Dis. Ret.</p>
+        <p class="TypeCode">[B]</p>
       </div>
     </a>
 
     <div class="link1">
       <div class="containerCard">
-        <div class="cardBackBack"></div>
-        <div class="cardBack"></div>
-        <div class="CardFront">
-          <img class="imgIcon" src="icons/carro.svg" alt="">
-          <p class="description">Códigos DTC</p>
-          <p class="TitleCode">Carroceria</p>
-          <p class="detailData">Ver Sección detallada</p>
-          <p class="TypeCode">[B]</p>
-        </div>
+        <div class="iconWrap"><img class="imgIcon" src="icons/carro.svg" alt="Carroceria"></div>
+        <p class="description">Códigos DTC</p>
+        <p class="TitleCode">Carrocería</p>
+        <p class="detailData">Ver sección detallada</p>
+        <p class="TypeCode">[B]</p>
       </div>
     </div>
-  </div>
-  
 
-  
+  </div>
+
+  <!-- ── Lógica del buscador ── -->
+  <script type="module">
+    import { dtcData } from './dtcData.js'
+
+    const input = document.getElementById('dtcSearch')
+    const results = document.getElementById('dtcResults')
+
+    const escapeHtml = (str) =>
+      str.replace(/[&<>"']/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]))
+
+    const render = (query) => {
+      const q = query.trim().toUpperCase()
+
+      if (q.length < 2) {
+        results.classList.remove('open')
+        results.innerHTML = ''
+        return
+      }
+
+      const matches = dtcData.filter((item) =>
+        item.code.toUpperCase().includes(q) ||
+        item.description.toUpperCase().includes(q)
+      ).slice(0, 12)
+
+      results.innerHTML = ''
+
+      if (matches.length === 0) {
+        const empty = document.createElement('div')
+        empty.className = 'dtc-empty'
+        empty.innerHTML = `
+          <p>No se encontró "<strong>${escapeHtml(query.trim())}</strong>" en el manual.</p>
+          <a class="dtc-google-link" href="https://www.google.com/search?q=${encodeURIComponent('código DTC ' + query.trim() + ' Mazda 3')}" target="_blank" rel="noopener noreferrer">
+            🔍 Buscar en Google ↗
+          </a>
+        `
+        results.appendChild(empty)
+        results.classList.add('open')
+        return
+      }
+
+      matches.forEach((item) => {
+        const row = document.createElement('a')
+        row.href = item.href
+        row.target = 'contentIframe'
+        row.className = 'dtc-result'
+        row.innerHTML = `
+          <div class="dtc-result-main">
+            <span class="dtc-result-code">${escapeHtml(item.code)}</span>
+            <span class="dtc-result-desc">${escapeHtml(item.description)}</span>
+          </div>
+          <span class="dtc-result-section">${escapeHtml(item.section)}</span>
+        `
+        row.addEventListener('click', () => {
+          results.classList.remove('open')
+        })
+        results.appendChild(row)
+      })
+
+      results.classList.add('open')
+    }
+
+    input.addEventListener('input', () => render(input.value))
+    input.addEventListener('focus', () => { if (input.value.trim().length >= 2) render(input.value) })
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-wrap')) {
+        results.classList.remove('open')
+      }
+    })
+  </script>
+
 </body>
 </html>

@@ -1,60 +1,222 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN" "http://www.w3.org/MarkUp/Wilbur/HTML32.dtd">
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
-    <meta name="TEMPLATEBASE" content="Simple HTML">
-    <meta name="LASTUPDATED" content="04/26/03 14:07:04">
-    <title>HOW TO USE THIS MANUAL</title>
-  </head>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Identificación del Vehículo (VIN)</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <body link="#3366CC" vlink="#9999CC" text="#000000" alink="#0000CC" bgcolor="#FFFFFF">
-<a name="wp1025486"> </a><div align="center">
-  <h1>
-  <font face="Arial, Helvetica, sans-serif" size="5">VIN</font></h1>
-<hr>
-</div>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    }
 
-  <div align="center">
-    <center>
-    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="28%">
-      <tr>
-        <td width="39%"><font face="Arial" size="4">BK12F2*</font></td>
-        <td width="8%">&nbsp;</td>
-        <td width="38%"><font size="4" face="Arial">100001</font></td>
-      </tr>
-      <tr>
-        <td width="16%"><font face="Arial" size="4">BK12Z2*</font></td>
-        <td width="8%">&nbsp;</td>
-        <td width="38%"><font size="4" face="Arial">100001</font></td>
-      </tr>
-      <tr>
-        <td width="16%"><font face="Arial" size="4">BK12Z5*</font></td>
-        <td width="8%">&nbsp;</td>
-        <td width="38%"><font size="4" face="Arial">100001</font></td>
-      </tr>
-      <tr>
-        <td width="16%"><font face="Arial" size="4">BK14F2*</font></td>
-        <td width="8%">&nbsp;</td>
-        <td width="38%"><font size="4" face="Arial">100001</font></td>
-      </tr>
-      <tr>
-        <td width="16%"><font face="Arial" size="4">BK14Z2*</font></td>
-        <td width="8%">&nbsp;</td>
-        <td width="38%"><font size="4" face="Arial">100001</font></td>
-      </tr>
-      <tr>
-        <td width="16%"><font face="Arial" size="4">BK14Z5*</font></td>
-        <td width="8%">&nbsp;</td>
-        <td width="38%"><font size="4" face="Arial">100001</font></td>
-      </tr>
-    </table>
-    </center>
+    body {
+      background-color: #f4f5f7;
+      color: #1a1a1a;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Tarjetas principales */
+    .card {
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      color: #0956d2;
+      font-weight: 700;
+      border-bottom: 2px solid #0956d2;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      color: #1a1a1a;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #5f6368;
+      line-height: 1.5;
+    }
+
+    /* Tabla de rangos VIN */
+    .vin-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .vin-table th {
+      background-color: #f8fafc;
+      color: #0956d2;
+      font-weight: 600;
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .vin-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #1a1a1a;
+    }
+
+    .vin-table tr:hover {
+      background-color: #f1f5f9;
+    }
+
+    .code {
+      font-family: monospace;
+      font-weight: bold;
+      color: #0956d2;
+      background-color: #eef2ff;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Desglose explicativo */
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+
+    .breakdown-item {
+      background-color: #f8fafc;
+      border-left: 3px solid #0956d2;
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .breakdown-item strong {
+      display: block;
+      color: #1a1a1a;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .breakdown-item span {
+      font-size: 0.8rem;
+      color: #5f6368;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    
+    <!-- Encabezado e Introducción -->
+    <div class="card">
+      <h1>Identificación del Vehículo (VIN)</h1>
+      <p>
+        El <strong>VIN</strong> (<em>Vehicle Identification Number</em> / Número de Identificación Vehicular) es el código alfanumérico único e irrepetible asignado por el fabricante para identificar el vehículo, su origen, motorización y especificaciones de taller.
+      </p>
+    </div>
+
+    <!-- Explicación de la Codificación Mazda BK -->
+    <div class="card">
+      <h2>Nomenclatura del Código (Serie Mazda BK - Japón)</h2>
+      <p>Desglose de los caracteres del prefijo de chasis utilizado en esta sección del manual:</p>
+      
+      <div class="breakdown-grid">
+        <div class="breakdown-item">
+          <strong>Origen / Fabricante: JM1 / JM7</strong>
+          <span>Japón (J) - Mazda Motor Corporation.</span>
+        </div>
+        <div class="breakdown-item">
+          <strong>Modelo: BK</strong>
+          <span>Mazda 3 (Primera Generación).</span>
+        </div>
+        <div class="breakdown-item">
+          <strong>Carrocería: 12 / 14</strong>
+          <span><strong>14:</strong> Sedan 4 puertas.<br><strong>12:</strong> Hatchback 5 puertas.</span>
+        </div>
+        <div class="breakdown-item">
+          <strong>Motorización: F2 / Z2 / Z5</strong>
+          <span><strong>F2:</strong> Motor 2.0L (LF).<br><strong>Z2 / Z5:</strong> Motor 1.6L (Z6) / 1.4L (ZJ).</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla Original Mejorada -->
+    <div class="card">
+      <h2>Rangos de Chasis y Producción Inicial</h2>
+      <p>Números de serie a partir de los cuales aplica este manual de taller:</p>
+
+      <table class="vin-table">
+        <thead>
+          <tr>
+            <th>Prefijo VIN (Modelo / Motor)</th>
+            <th>Número de Serie Inicial</th>
+            <th>Mercado / Destino</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="code">BK12F2*</span></td>
+            <td>100001</td>
+            <td>Hatchback 5P - Motor 2.0L (LF)</td>
+          </tr>
+          <tr>
+            <td><span class="code">BK12Z2*</span></td>
+            <td>100001</td>
+            <td>Hatchback 5P - Motor 1.6L (Z6)</td>
+          </tr>
+          <tr>
+            <td><span class="code">BK12Z5*</span></td>
+            <td>100001</td>
+            <td>Hatchback 5P - Motor 1.4L (ZJ)</td>
+          </tr>
+          <tr>
+            <td><span class="code">BK14F2*</span></td>
+            <td>100001</td>
+            <td>Sedan 4P - Motor 2.0L (LF)</td>
+          </tr>
+          <tr>
+            <td><span class="code">BK14Z2*</span></td>
+            <td>100001</td>
+            <td>Sedan 4P - Motor 1.6L (Z6)</td>
+          </tr>
+          <tr>
+            <td><span class="code">BK14Z5*</span></td>
+            <td>100001</td>
+            <td>Sedan 4P - Motor 1.4L (ZJ)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 
-<a name="wp1059776"> </a>
-
-<a name="wp1060858"> </a>
-  
-  </body>
+</body>
 </html>

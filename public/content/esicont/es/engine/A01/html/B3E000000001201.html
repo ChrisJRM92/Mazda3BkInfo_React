@@ -1,326 +1,334 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN" "http://www.w3.org/MarkUp/Wilbur/HTML32.dtd">
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="GENERATOR" content="Quadralay WebWorks Publisher Professional Edition 7.0.2.1206">
-    <meta name="TEMPLATEBASE" content="Simple HTML">
-    <meta name="LASTUPDATED" content="07/27/03 12:16:51">
-    <title>COMO USAR EL MANUAL</title>
-  </head>
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CÓMO USAR EL MANUAL</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <body link="#3366CC" vlink="#9999CC" text="#000000" alink="#0000CC" bgcolor="#FFFFFF">
-<a name="wp1025486"> </a><h1><div align="center"><font color="Black" face="Arial, Helvetica, sans-serif" size="5"><b>
-COMO USAR EL MANUAL
-</b></font></div></h1>
-<hr>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    }
 
-<a name="wp1058587"> </a><p><div align="right"><font color="#000000" face="Arial" size="2">
-B3E000000001201
-</font></div></p>
+    body {
+      background-color: #f4f5f7;
+      color: #1a1a1a;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-<a name="wp1059812"> </a><h2><font color="Black" face="Arial, Helvetica, sans-serif" size="4"><b>
-Argumentos tratados
-</b></font></h2>
+    .container {
+      max-width: 850px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
 
-<a name="wp1058597"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-&bull;&nbsp;Este manual contiene los procedimientos para efectuar las operaciones de mantenimiento necesarias. Los procedimientos se dividen en las cinco operaciones de base siguientes:
-</font></p>
-<dl>
-<a name="wp1058614"> </a><dd><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
--	Remoci&#243;n/Instalaci&#243;n
-</font></dd>
+    /* Tarjetas generales */
+    .card {
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
 
-<a name="wp1058634"> </a><dd><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
--	Desmontaje/Montaje
-</font></dd>
+    .header-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #0956d2;
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
 
-<a name="wp1058646"> </a><dd><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
--	Sustituci&#243;n
-</font></dd>
+    h1 {
+      font-size: 1.4rem;
+      color: #0956d2;
+      font-weight: 700;
+    }
 
-<a name="wp1058658"> </a><dd><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
--	Control
-</font></dd>
+    .doc-code {
+      font-family: monospace;
+      font-size: 0.85rem;
+      background-color: #eef2ff;
+      color: #0956d2;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
 
-<a name="wp1058668"> </a><dd><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
--	Ajuste
-</font></dd>
-</dl>
-<a name="wp1058678"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-&bull;&nbsp;Se han omitido las operaciones m&#225;s sencillas (por ejemplo remoci&#243;n/instalaci&#243;n de componentes simples, elevaci&#243;n con gato, elevaci&#243;n veh&#237;culo, limpieza de los componentes e inspecci&#243;n visual) que pueden efectuarse f&#225;cilmente y de manera intuitiva.
-</font></p>
+    h2 {
+      font-size: 1.15rem;
+      color: #1a1a1a;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      border-left: 4px solid #0956d2;
+      padding-left: 0.5rem;
+    }
 
-<a name="wp1058715"> </a><h2><font color="Black" face="Arial, Helvetica, sans-serif" size="4"><b>
-Procedimientos de mantenimiento
-</b></font></h2>
+    h3 {
+      font-size: 1rem;
+      color: #0956d2;
+      font-weight: 600;
+      margin: 1rem 0 0.5rem 0;
+    }
 
-<a name="wp1058725"> </a><h3><font color="Black" face="Arial, Helvetica, sans-serif" size="3"><b>
-Control, ajuste
-</b></font></h3>
-<dl>
-<a name="wp1058737"> </a><dd><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-&bull;&nbsp;Los procedimientos de control y ajuste est&#225;n divididos en pasos. Los puntos importantes que se refieren a los procedimientos de mantenimiento se explican en detalle y se muestran en las ilustraciones.<br clear="all">
-<img src="images/WGIWXX0009E.png" align="left" height="344" width="334" border="0" hspace="0" vspace="0"><br clear="all">
+    p {
+      font-size: 0.9rem;
+      color: #5f6368;
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
 
+    /* Lista de operaciones */
+    .operations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
 
+    .operation-item {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #1a1a1a;
+      text-align: center;
+    }
 
+    /* Imágenes responsivas y centradas */
+    .img-container {
+      display: flex;
+      justify-content: center;
+      margin: 1.25rem 0;
+    }
 
-</font></dd>
-</dl>
-<a name="wp1058773"> </a><h3><font color="Black" face="Arial, Helvetica, sans-serif" size="3"><b>
-Procedimientos de reparaci&#243;n
-</b></font></h3>
+    .img-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
 
-<a name="wp1058785"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-	1.	La mayor&#237;a de las operaciones empiezan con una ilustraci&#243;n general. Esta sirve para identificar los componentes, muestra como los componentes est&#225;n montados y describe la inspecci&#243;n visual de los componentes. Sin embargo, s&#243;lo los procedimientos de remoci&#243;n/instalaci&#243;n que necesitan ser llevados a cabo met&#243;dicamente tienen instrucciones escritas.
-</font></p>
+    /* Tabla de símbolos */
+    .symbols-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.875rem;
+    }
 
-<a name="wp1058822"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-	2.	La ilustraci&#243;n general muestra tambi&#233;n los componentes expansibles, los pares de torsi&#243;n y los s&#237;mbolos que se refieren al aceite, a la grasa y a la masilla impermeable. Adem&#225;s hay s&#237;mbolos que indican los componentes que necesitan de herramientas especiales de mantenimiento o instrumentos equivalentes.
-</font></p>
+    .symbols-table th {
+      background-color: #f8fafc;
+      color: #0956d2;
+      font-weight: 600;
+      text-align: left;
+      padding: 10px;
+      border-bottom: 2px solid #e2e8f0;
+    }
 
-<a name="wp1058851"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-	3.	Los pasos de los procedimientos est&#225;n numerados y el componente objeto del procedimiento est&#225; marcado en la ilustraci&#243;n con el n&#250;mero correspondiente. En unos casos hay unos puntos fundamentales o informaciones suplementarias que se refieren al procedimiento. Haga referencia a estas informaciones cuando se efect&#250;a el mantenimiento del componente en cuesti&#243;n.</font></p><p><img src="images/BHE0000W1042.png" height="678" width="644" border="0" hspace="0" vspace="0"></p><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
+    .symbols-table td {
+      padding: 10px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: middle;
+      color: #1a1a1a;
+    }
 
+    .symbols-table tr:hover {
+      background-color: #f8fafc;
+    }
 
+    .symbols-table img {
+      display: block;
+      margin: 0 auto;
+      max-width: 80px;
+      height: auto;
+    }
 
-</font></p>
+    /* Bloques de mensajes de aviso */
+    .notice-box {
+      border-left: 4px solid #cbd5e1;
+      background-color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 0.75rem;
+    }
 
-<a name="wp1058895"> </a><h2><font color="Black" face="Arial, Helvetica, sans-serif" size="4"><b>
-S&#237;mbolos
-</b></font></h2>
+    .notice-box.danger { border-left-color: #ef4444; }
+    .notice-box.warning { border-left-color: #f59e0b; }
+    .notice-box.info { border-left-color: #0956d2; }
 
-<a name="wp1058907"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-&bull;&nbsp;Hay ocho s&#237;mbolos que indican aceite, grasa, fluidos, masilla impermeable y la utilizaci&#243;n de la <b>SST</b> o equivalente. Estos s&#237;mbolos especifican los puntos de aplicaci&#243;n o la utilizaci&#243;n de estos materiales durante el mantenimiento.
-</font></p>
+    .notice-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+      color: #1a1a1a;
+    }
 
-<a name="wp1058949"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-</font></p><div align="left">
-<table border="1">
-  <caption></caption>
-  <tr align="center">    <th>
-<a name="wp1059034"> </a><p><div align="center"><font color="Black" face="Arial, Helvetica, sans-serif" size="2"><b>
-S&#237;mbolo
-</b></font></div></p>
-</th>
-    <th>
-<a name="wp1059036"> </a><p><div align="center"><font color="Black" face="Arial, Helvetica, sans-serif" size="2"><b>
-Significado
-</b></font></div></p>
-</th>
-    <th>
-<a name="wp1059038"> </a><p><div align="center"><font color="Black" face="Arial, Helvetica, sans-serif" size="2"><b>
-Tipo
-</b></font></div></p>
-</th>
-</tr>
-  <tr align="left">    <td>
-<a name="wp1058952"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-<img src="images/WGIWXX0012E3.png" height="54" width="97" border="0" hspace="0" vspace="0">
+    .notice-desc {
+      font-size: 0.85rem;
+      color: #5f6368;
+      margin-bottom: 0;
+    }
+  </style>
+</head>
 
+<body>
 
+  <div class="container">
 
-</font></p>
-</td>
-    <td>
-<a name="wp1058954"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Aplicar aceite
-</font></div>
-</td>
-    <td>
-<a name="wp1059010"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Aceite para motor o aceite de engranaje nuevo y adecuado
-</font></div>
-</td>
-</tr>
-  <tr align="left">    <td>
-<a name="wp1059057"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-<img src="images/WGIWXX0013E4.png" height="54" width="97" border="0" hspace="0" vspace="0">
+    <!-- Encabezado -->
+    <div class="card">
+      <div class="header-card">
+        <h1>CÓMO USAR EL MANUAL</h1>
+        <span class="doc-code">B3E000000001201</span>
+      </div>
+    </div>
 
+    <!-- Argumentos tratados -->
+    <div class="card">
+      <h2>Argumentos Tratados</h2>
+      <p>Este manual contiene los procedimientos para efectuar las operaciones de mantenimiento necesarias. Los procedimientos se dividen en las cinco operaciones de base siguientes:</p>
+      
+      <div class="operations-grid">
+        <div class="operation-item">Remoción / Instalación</div>
+        <div class="operation-item">Desmontaje / Montaje</div>
+        <div class="operation-item">Sustitución</div>
+        <div class="operation-item">Control</div>
+        <div class="operation-item">Ajuste</div>
+      </div>
 
+      <p>Se han omitido las operaciones más sencillas (por ejemplo: remoción/instalación de componentes simples, elevación con gato, elevación del vehículo, limpieza de componentes e inspección visual) que pueden efectuarse fácilmente y de manera intuitiva.</p>
+    </div>
 
-</font></p>
-</td>
-    <td>
-<a name="wp1059060"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Aplicar fluido de frenos
-</font></div>
-</td>
-    <td>
-<a name="wp1059063"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Fluido de frenos nuevo y adecuado
-</font></div>
-</td>
-</tr>
-  <tr align="left">    <td>
-<a name="wp1059067"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-<img src="images/WGIWXX0014E5.png" height="54" width="97" border="0" hspace="0" vspace="0">
+    <!-- Procedimientos de mantenimiento -->
+    <div class="card">
+      <h2>Procedimientos de Mantenimiento</h2>
+      
+      <h3>Control y Ajuste</h3>
+      <p>Los procedimientos de control y ajuste están divididos en pasos. Los puntos importantes que se refieren a los procedimientos de mantenimiento se explican en detalle y se muestran en las ilustraciones.</p>
 
+      <div class="img-container">
+        <img src="images/WGIWXX0009E.png" alt="Ilustración de Control y Ajuste">
+      </div>
 
+      <h3>Procedimientos de Reparación</h3>
+      <p><strong>1.</strong> La mayoría de las operaciones empiezan con una ilustración general. Esta sirve para identificar los componentes, muestra cómo están montados y describe la inspección visual. Sin embargo, solo los procedimientos de remoción/instalación que necesitan ser llevados a cabo metódicamente tienen instrucciones escritas.</p>
+      
+      <p><strong>2.</strong> La ilustración general muestra también los componentes expansibles, los pares de torsión y los símbolos que se refieren al aceite, a la grasa y a la masilla impermeable. Además hay símbolos que indican los componentes que necesitan herramientas especiales de mantenimiento (SST) o instrumentos equivalentes.</p>
+      
+      <p><strong>3.</strong> Los pasos de los procedimientos están numerados y el componente objeto del procedimiento está marcado en la ilustración con el número correspondiente. En algunos casos hay puntos fundamentales o informaciones suplementarias que se refieren al procedimiento.</p>
 
-</font></p>
-</td>
-    <td>
-<a name="wp1059070"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Aplicar fluido para cambio autom&#225;tico con diferencial/cambio autom&#225;tico.
-</font></div>
-</td>
-    <td>
-<a name="wp1059073"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Fluido para cambio autom&#225;tico con diferencial/cambio autom&#225;tico nuevo y adecuado.
-</font></div>
-</td>
-</tr>
-  <tr align="left">    <td>
-<a name="wp1059077"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-<img src="images/WGIWXX0015E6.png" height="54" width="97" border="0" hspace="0" vspace="0">
+      <div class="img-container">
+        <img src="images/BHE0000W1042.png" alt="Ilustración General del Procedimiento">
+      </div>
+    </div>
 
+    <!-- Símbolos -->
+    <div class="card">
+      <h2>Símbolos</h2>
+      <p>Hay ocho símbolos que indican aceite, grasa, fluidos, masilla impermeable y la utilización de la <strong>SST</strong> (Herramienta Especial de Servicio) o equivalente. Estos símbolos especifican los puntos de aplicación durante el mantenimiento:</p>
 
+      <table class="symbols-table">
+        <thead>
+          <tr>
+            <th style="width: 20%; text-align: center;">Símbolo</th>
+            <th style="width: 35%;">Significado</th>
+            <th style="width: 45%;">Tipo / Aplicación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="images/WGIWXX0012E3.png" alt="Aceite"></td>
+            <td><strong>Aplicar aceite</strong></td>
+            <td>Aceite para motor o aceite de engranaje nuevo y adecuado</td>
+          </tr>
+          <tr>
+            <td><img src="images/WGIWXX0013E4.png" alt="Fluido de frenos"></td>
+            <td><strong>Aplicar fluido de frenos</strong></td>
+            <td>Fluido de frenos nuevo y adecuado</td>
+          </tr>
+          <tr>
+            <td><img src="images/WGIWXX0014E5.png" alt="Fluido caja automática"></td>
+            <td><strong>Aplicar fluido AT</strong></td>
+            <td>Fluido para cambio automático/diferencial nuevo y adecuado</td>
+          </tr>
+          <tr>
+            <td><img src="images/WGIWXX0015E6.png" alt="Grasa"></td>
+            <td><strong>Aplicar grasa</strong></td>
+            <td>Grasa adecuada</td>
+          </tr>
+          <tr>
+            <td><img src="images/WGIWXX0016E7.png" alt="Masilla"></td>
+            <td><strong>Aplicar masilla impermeable</strong></td>
+            <td>Masilla impermeable / Sellador adecuado</td>
+          </tr>
+          <tr>
+            <td><img src="images/WGIWXX0017E8.png" alt="Vaselina"></td>
+            <td><strong>Aplicar vaselina</strong></td>
+            <td>Vaselina adecuada</td>
+          </tr>
+          <tr>
+            <td><img src="images/WGIWXX0018E9.png" alt="Sustituir"></td>
+            <td><strong>Sustituir componentes</strong></td>
+            <td>O-ring, juntas, sellos, etc. (Piezas no reutilizables)</td>
+          </tr>
+          <tr>
+            <td><img src="images/WGIWXX0019E10.png" alt="SST"></td>
+            <td><strong>Utilizar SST</strong></td>
+            <td>Herramienta Especial de Servicio o equivalente</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-</font></p>
-</td>
-    <td>
-<a name="wp1059080"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Aplicar grasa
-</font></div>
-</td>
-    <td>
-<a name="wp1059083"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Grasa adecuada
-</font></div>
-</td>
-</tr>
-  <tr align="left">    <td>
-<a name="wp1059230"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-<img src="images/WGIWXX0016E7.png" height="43" width="97" border="0" hspace="0" vspace="0">
+    <!-- Mensajes de aviso -->
+    <div class="card">
+      <h2>Mensajes de Aviso y Especificaciones</h2>
+      <p>En este manual se utilizan diferentes niveles de advertencias e información técnica:</p>
 
+      <div class="notice-box danger">
+        <div class="notice-title" style="color: #ef4444;">Atención</div>
+        <p class="notice-desc">Indica una situación peligrosa que puede causar heridas graves o la muerte.</p>
+      </div>
 
+      <div class="notice-box warning">
+        <div class="notice-title" style="color: #f59e0b;">Advertencia</div>
+        <p class="notice-desc">Indica una situación que puede causar daños directos al vehículo o a sus componentes.</p>
+      </div>
 
-</font></p>
-</td>
-    <td>
-<a name="wp1059233"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Aplicar masilla impermeable
-</font></div>
-</td>
-    <td>
-<a name="wp1059236"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Masilla impermeable adecuada
-</font></div>
-</td>
-</tr>
-  <tr align="left">    <td>
-<a name="wp1059262"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-<img src="images/WGIWXX0017E8.png" height="39" width="97" border="0" hspace="0" vspace="0">
+      <div class="notice-box info">
+        <div class="notice-title" style="color: #0956d2;">Nota</div>
+        <p class="notice-desc">Contiene información suplementaria para completar adecuadamente un procedimiento.</p>
+      </div>
 
+      <div class="notice-box">
+        <div class="notice-title">Especificación</div>
+        <p class="notice-desc">Valores que indican la gama de referencia estándar para efectuar inspecciones y ajustes.</p>
+      </div>
 
+      <div class="notice-box">
+        <div class="notice-title">Límite Máximo y Mínimo</div>
+        <p class="notice-desc">Valores límites tolerables que no se deben sobrepasar durante las inspecciones y ajustes.</p>
+      </div>
+    </div>
 
-</font></p>
-</td>
-    <td>
-<a name="wp1059265"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Aplicar vaselina
-</font></div>
-</td>
-    <td>
-<a name="wp1059268"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Vaselina adecuada
-</font></div>
-</td>
-</tr>
-  <tr align="left">    <td>
-<a name="wp1059294"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-<img src="images/WGIWXX0018E9.png" height="39" width="97" border="0" hspace="0" vspace="0">
+  </div>
 
-
-
-</font></p>
-</td>
-    <td>
-<a name="wp1059297"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Sustituir componentes
-</font></div>
-</td>
-    <td>
-<a name="wp1059300"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-O-ring, juntas, etc.
-</font></div>
-</td>
-</tr>
-  <tr align="left">    <td>
-<a name="wp1059333"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-<img src="images/WGIWXX0019E10.png" height="45" width="97" border="0" hspace="0" vspace="0">
-
-
-
-</font></p>
-</td>
-    <td>
-<a name="wp1059336"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Utilizar SST o equivalente
-</font></div>
-</td>
-    <td>
-<a name="wp1059339"> </a><div><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-Herramientas adecuadas
-</font></div>
-</td>
-</tr>
-</table>
-</div>
-<p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-</font></p>
-
-<a name="wp1059367"> </a><h2><font color="Black" face="Arial, Helvetica, sans-serif" size="4"><b>
-Mensajes de aviso
-</b></font></h2>
-
-<a name="wp1059434"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-&bull;&nbsp;En este manual hay muchas <b>Atenciones</b>, <b>Advertencias</b>, <b>Notas</b>, <b>Especificaciones</b> y <b>L&#237;mites m&#225;ximos y m&#237;nimos</b>.
-</font></p>
-
-<a name="wp1059449"> </a><h3><font color="Black" face="Arial, Helvetica, sans-serif" size="3"><b>
-Atenci&#243;n
-</b></font></h3>
-<dl>
-<a name="wp1059461"> </a><dd><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-&bull;&nbsp;Una Atenci&#243;n indica una situaci&#243;n que puede causar heridas graves o muerte.
-</font></dd>
-</dl>
-<a name="wp1059480"> </a><h3><font color="Black" face="Arial, Helvetica, sans-serif" size="3"><b>
-Advertencia
-</b></font></h3>
-<dl>
-<a name="wp1059490"> </a><dd><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-&bull;&nbsp;Una Advertencia indica una situaci&#243;n que puede causar da&#241;os al veh&#237;culo o a sus componentes.
-</font></dd>
-</dl>
-<a name="wp1059511"> </a><h3><font color="Black" face="Arial, Helvetica, sans-serif" size="3"><b>
-Nota
-</b></font></h3>
-<dl>
-<a name="wp1059521"> </a><dd><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-&bull;&nbsp;Una Nota contiene informaciones suplementarias para completar un determinado procedimiento.
-</font></dd>
-</dl>
-<a name="wp1059536"> </a><h3><font color="Black" face="Arial, Helvetica, sans-serif" size="3"><b>
-Especificaci&#243;n
-</b></font></h3>
-<dl>
-<a name="wp1059548"> </a><dd><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-&bull;&nbsp;Los valores indican la gama de referencias para efectuar inspecciones y ajustes.
-</font></dd>
-</dl>
-<a name="wp1059563"> </a><h3><font color="Black" face="Arial, Helvetica, sans-serif" size="3"><b>
-L&#237;mite m&#225;ximo y m&#237;nimo
-</b></font></h3>
-<dl>
-<a name="wp1059579"> </a><dd><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
-&bull;&nbsp;Los valores indican los l&#237;mites m&#225;ximo y m&#237;nimo que no se deben sobrepasar cuando se efect&#250;an inspecciones y ajustes.
-</font></dd>
-</dl>
-<a name="wp1059696"> </a><p><font color="Black" face="Arial, Helvetica, sans-serif" size="2">
- 
-</font></p>
-  </body>
+</body>
 </html>
